@@ -37,9 +37,12 @@ public class CreateServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		 String title = req.getParameter("title");
 		 String author = req.getParameter("author");
 		 String text = req.getParameter("text");
+		 
+		 
 		 
 		 Article article = new Article(-1,title, author, text, new Date());
 		 

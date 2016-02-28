@@ -93,7 +93,6 @@ public class ArticleService implements AutoCloseable {
 		// TODO создать PreparedStatement
 		// TODO задать для PreparedStatement id
 		// TODO выполнить запрос 
-		
 	}
 	
 	public Article getById(int id) throws SQLException {
