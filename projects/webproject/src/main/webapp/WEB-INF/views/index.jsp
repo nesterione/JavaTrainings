@@ -11,7 +11,9 @@
 </head>
 <body>
 
-<h1>News <a href="create">+</a></h1> 
+<h1> ${user}</h1>
+
+<h2>News <a href="create">+</a></h2> 
 
 <c:forEach var="item" items="${articles}">
 	<p> ${item.id}</p>
@@ -22,9 +24,11 @@
 	
 	</p>
 	 <p> 
-	 	{TODO} Remove 
-	 	{TODO} с помощью java script добавить подтверждение 
-	 	удаления
+	 	
+	 	<form action="delete?id=${item.id}" method="post">
+	 		<input type="submit" value="delete"> 
+	 	</form>
+	 	
 	 </p>
 	<hr>
 </c:forEach>

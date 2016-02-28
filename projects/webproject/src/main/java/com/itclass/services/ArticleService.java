@@ -89,10 +89,15 @@ public class ArticleService implements AutoCloseable {
 		return articles;
 	}
 	
-	public void remove(int id) {
-		// TODO создать PreparedStatement
-		// TODO задать для PreparedStatement id
-		// TODO выполнить запрос 
+	public void remove(int id) throws SQLException {
+		
+		try(PreparedStatement preparedStatement 
+				= connection.prepareStatement(DELETE_QUERY)) {
+			
+			preparedStatement.setInt(1, id);
+			preparedStatement.executeUpdate();
+			
+		} 
 	}
 	
 	public Article getById(int id) throws SQLException {

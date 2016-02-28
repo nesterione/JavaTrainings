@@ -8,16 +8,25 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-@WebFilter("*")
-public class EncodingFilter implements Filter {
+@WebFilter("/AuthFilter")
+public class AuthFilter implements Filter {
 
 	public void destroy() {
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		request.setCharacterEncoding("UTF-8");
-
+		
+		HttpServletRequest req = (HttpServletRequest)request;
+		
+		if(req.getSession().getAttribute("user")!=null) {
+			HttpServletResponse resp = (HttpServletResponse) response;
+			
+			//resp.sendRedirect(req.getContextPath()+"/login");
+		}
+		
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
 	}
