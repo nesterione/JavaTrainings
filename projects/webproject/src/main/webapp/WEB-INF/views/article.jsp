@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Article</title>
-</head>
-<body>
-	
+
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<t:layout>
+    <jsp:attribute name="header">Статья</jsp:attribute>
+    <jsp:body>
+    
 	<p> <a href="home"> На главную </a>  </p>
 	
     <h1> ${article.title}</h1>
@@ -15,6 +13,7 @@
     <p> 
     	${article.text}
     </p>
-
-</body>
-</html>
+    
+    
+</jsp:body>
+</t:layout>
