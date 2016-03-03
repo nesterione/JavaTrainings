@@ -14,7 +14,7 @@ import com.itclass.model.User;
 public class DbService {
 
 	private static final String hibernate_show_sql = "true";
-    private static final String hibernate_hbm2ddl_auto = "false";
+    private static final String hibernate_hbm2ddl_auto = "create";
 	
     final private SessionFactory sessionFactory;
     
@@ -41,8 +41,6 @@ public class DbService {
     					.createQuery("from User")
     					.list();
     	
-    	session.createCriteria(User.class)
-    	
     	
     	session.close();
     	
@@ -50,6 +48,9 @@ public class DbService {
     }
     
     
+    public DbService(SessionFactory sessionFactory) {
+    	this.sessionFactory = sessionFactory;
+    }
     
     
     public DbService() {
@@ -64,9 +65,14 @@ public class DbService {
         
         configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
         configuration.setProperty("hibernate.connection.driver_class", "org.h2.Driver");
-        configuration.setProperty("hibernate.connection.url", "jdbc:h2:~/tusers");
-        configuration.setProperty("hibernate.connection.username", "igor");
-        configuration.setProperty("hibernate.connection.password", "123");
+        
+        configuration
+        	.setProperty("hibernate.connection.url", "jdbc:h2:mem:test");
+        configuration.setProperty("hibernate.connection.username", "");
+        configuration.setProperty("hibernate.connection.password", "");
+        //        configuration.setProperty("hibernate.connection.url", "jdbc:h2:~/tusers");
+//        configuration.setProperty("hibernate.connection.username", "igor");
+//        configuration.setProperty("hibernate.connection.password", "123");
         configuration.setProperty("hibernate.show_sql", hibernate_show_sql);
         configuration.setProperty("hibernate.hbm2ddl.auto", hibernate_hbm2ddl_auto);
         
