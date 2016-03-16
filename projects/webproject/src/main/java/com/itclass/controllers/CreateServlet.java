@@ -20,6 +20,9 @@ public class CreateServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				
+		
+		System.out.println(request.getHeader("referer"));
+		
 		request
 			.getRequestDispatcher("WEB-INF/views/create.jsp")
 			.forward(request, response);

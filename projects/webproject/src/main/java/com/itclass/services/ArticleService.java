@@ -13,28 +13,18 @@ import java.util.List;
 
 import com.itclass.model.Article;
 
-public class ArticleService implements AutoCloseable {
+public class ArticleService extends BaseServive {
 	
+	public ArticleService() throws ClassNotFoundException, SQLException {
+		super();
+	}
+
 	final private String SELECT_QUERY = "SELECT * FROM ARTICLES ";
 	final private String GET_BY_ID_QUERY = "SELECT * FROM ARTICLES WHERE id=?";
 	final private String INSERT_QUERY =
 			"insert into articles(title, author, text, date) values( ?, ?, ?, ?);";
 	final private String DELETE_QUERY =
 			"DELETE FROM articles where id = ?";
-	
-	final private Connection connection;
-	
-	public ArticleService() throws ClassNotFoundException, SQLException {
-		
-		String url = "jdbc:h2:~/newsdb";
-		String user = "igor";
-		String password = "123";
-		String driver = "org.h2.Driver";
-		
-		Class.forName(driver);
-		
-		connection = DriverManager.getConnection(url, user, password);
-	}
 	
 	public void save(Article article) throws Exception {
 		
@@ -123,14 +113,5 @@ public class ArticleService implements AutoCloseable {
 		
 		return article;
 	}
-
-	@Override
-	public void close() throws Exception {
-		if(connection!=null) {
-			connection.close();
-		}
-	}
-
- 
 		
 }

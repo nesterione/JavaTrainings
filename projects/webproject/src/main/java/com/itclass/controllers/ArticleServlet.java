@@ -20,7 +20,7 @@ public class ArticleServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try(ArticleService service = new ArticleService() ) {
-			
+	
 			String strId = request.getParameter("id");		
 			int id = Integer.parseInt(strId);
 			Article article = service.getById(id);
