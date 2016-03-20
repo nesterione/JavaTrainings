@@ -15,6 +15,7 @@ href="${pageContext.request.contextPath}/resources/style.css" />
 
 </head> 
  <body>
+ 
  	<div class="wrap">
  		<jsp:doBody/>
  	

@@ -1,6 +1,13 @@
 package com.itclass.model;
 
+import javax.persistence.*;
+
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Table(name="Users")
 public class User {
+	
 	private int id;
 	private String name;
 	private String password;
@@ -14,6 +21,9 @@ public class User {
 		this.password = password;
 	}
 
+	 @Id
+	 @GeneratedValue(generator="increment")
+	 @GenericGenerator(name="increment", strategy = "increment")
 	public int getId() {
 		return id;
 	}
@@ -22,6 +32,7 @@ public class User {
 		this.id = id;
 	}
 
+	@Column(name="userName", nullable=false)
 	public String getName() {
 		return name;
 	}
@@ -36,6 +47,11 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", password=" + password + "]";
 	}
 
 	
