@@ -9,7 +9,13 @@ public class Run {
     public static void main(String[] args) {
 
 
-        Repository repository = RepositoryFactory.memRepository();
+        Repository repository =
+                RepositoryFactory.txtRepository("e:/data66.csv");
+
+
+        System.out.println(repository.getAll());
+
+
 
 //        String s = "";
 //        for (int i = 0; i < 10; i++) {

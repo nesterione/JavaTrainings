@@ -5,7 +5,7 @@
 [ ] вызов конструкторов базового класса 
 [ ] Основый работы с файлами 
 [ ] InputStream, OutputStream
-[ ] Reader, Writer
+[x] Reader, Writer
 [ ] Boxing/Unboxing
 [ ] Object (begin) clone
 [ ] исключения, 
