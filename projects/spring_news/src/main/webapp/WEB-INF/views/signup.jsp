@@ -10,19 +10,15 @@
 
 <h1> User registration </h1>
 
-<form action="signup" method="post">
+<form method="post">
 	<p>Username</p>
-	<input type="text" name="username" />
+	<input type="text" name="name" />
 	<br>
 	<p>Password</p>
 	<input type="password" name="password" />
 	<br>
 	
 	<input type="submit" value="registration" />
-	
-	<!-- TODO input для логина -->
-	<!-- TODO input для пароля -->
-	<!-- TODO input submit -->
 </form>
 
 </body>

@@ -10,12 +10,28 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import com.itclass.mappers.ArticleMapper;
 import com.itclass.models.Article;
 
 @Service
 public class ArticleService extends BaseServive {
+	
+	private JdbcTemplate jdbcTemplate;
+	
+    @Autowired
+    public void setDataSource(DataSource ds) {
+        jdbcTemplate = new JdbcTemplate(ds);
+    }
+    
+	public List<Article> getAll() throws SQLException {
+		return jdbcTemplate.query(SELECT_QUERY, new ArticleMapper());
+	}
 	
 	public ArticleService() throws ClassNotFoundException, SQLException {
 		super();
@@ -28,68 +44,18 @@ public class ArticleService extends BaseServive {
 	final private String DELETE_QUERY =
 			"DELETE FROM articles where id = ?";
 	
-	public void save(Article article) throws Exception {
+	public void save(Article article)  {
 		
-		try( PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY) ) {
-			
-			preparedStatement.setString(1, article.getTitle());
-			preparedStatement.setString(2, article.getAuthor());
-			preparedStatement.setString(3, article.getText());
-			
-			java.sql.Timestamp date = new java.sql.Timestamp( 
-					article.getDate().getTime() 
-				);
-			
-			preparedStatement.setTimestamp(4, date);
-			
-			
-			int changed = preparedStatement.executeUpdate();
-			
-			if(changed==0) {
-				throw new Exception("Record not saved");
-			}
-			
-		}
+		jdbcTemplate.update(INSERT_QUERY, 
+				article.getTitle(),
+				article.getAuthor(),
+				article.getText(),
+				new java.sql.Timestamp(article.getDate().getTime()));
 		
 	}
-	
-	public List<Article> getAll() throws SQLException {
-		
-		List<Article> articles = new ArrayList<>();
-	
-		try (PreparedStatement statement 
-				= connection.prepareStatement(SELECT_QUERY) ) {
-			
-			ResultSet result = statement.executeQuery();
-			
-			while(result.next()) {
-				
-				int id = result.getInt("id");
-				String title = result.getString("title");
-				String author = result.getString("author");
-				String text = result.getString("text");
-				Timestamp date = result.getTimestamp("date");
-				
-				Article article = new Article(id, title, author, text, date);
-				 
-				articles.add(article);
-			}
-			
-			
-		}
-		
-		return articles;
-	}
-	
-	public void remove(int id) throws SQLException {
-		
-		try(PreparedStatement preparedStatement 
-				= connection.prepareStatement(DELETE_QUERY)) {
-			
-			preparedStatement.setInt(1, id);
-			preparedStatement.executeUpdate();
-			
-		} 
+
+	public void remove(int id) {
+		jdbcTemplate.update(DELETE_QUERY,id);
 	}
 	
 	public Article getById(int id) throws SQLException {

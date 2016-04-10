@@ -22,7 +22,7 @@
 			</p>
 			 <p> 
 			 	
-			 	<form action="delete?id=${item.id}" method="post">
+			 	<form action="${pageContext.request.contextPath}/article/remove/${item.id}" method="post">
 			 		<input type="submit" value="delete"> 
 			 	</form>
 			 	

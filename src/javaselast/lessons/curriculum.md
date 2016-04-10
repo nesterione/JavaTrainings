@@ -20,8 +20,8 @@
 * [ ] порядок инициализации полей класса 
 * [ ] массивы объектов
 * [ ] JMX MBeans
-* [ ] cloneable
-* [ ] finalize
+* [x] cloneable
+* [x] finalize
 * [ ] serialization 
 * [ ] externalization
 * [ ] вызов методов базового класса 
@@ -36,6 +36,8 @@
 * [ ] блоки инициализации
 * [ ] исключения в статических конструкторах 
 * [ ] 
+* [x] regex/ pattern
+* [x] date/ simpleDateFormat
 
 Lesson 4
 

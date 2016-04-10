@@ -1,6 +1,7 @@
 package com.itclass.controller;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itclass.models.Article;
 import com.itclass.services.ArticleService;
@@ -35,4 +37,23 @@ public class ArticleController {
 		model.addAttribute("article", article);
 		return "article";
 	}
+	
+	@RequestMapping("/new")
+	public String createArticle() {
+		return "create";
+	}
+	
+	@RequestMapping(value = "/new", method=RequestMethod.POST)
+	public String saveArticle(Article article) {
+		article.setDate(new Date());
+		service.save(article);
+		return "redirect:all";
+	}
+	
+	@RequestMapping(value = "/remove/{id}", method=RequestMethod.POST)
+	public String removeArticle(@PathVariable("id") int id) {
+		service.remove(id);
+		return "redirect:/article/all";
+	}
+	
 }
