@@ -8,7 +8,8 @@ public class FileRead {
     public static void main(String[] args)  {
 
         File file = new File("e:/s.csv");
-        try(BufferedReader bufferedReader =
+
+        try (BufferedReader bufferedReader =
                     new BufferedReader(new FileReader(file)) ) {
 
 //            int c = 0;
@@ -20,6 +21,7 @@ public class FileRead {
             while ( (s=bufferedReader.readLine())!=null) {
                 System.out.println(s);
             }
+
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
