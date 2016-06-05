@@ -17,6 +17,8 @@ public class Client {
                 new InetSocketAddress("127.0.0.1", 8080)
         );
 
+
+
         Scanner scanner = new Scanner(System.in);
         String s = scanner.nextLine();
 
