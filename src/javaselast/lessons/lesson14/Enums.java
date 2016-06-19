@@ -54,7 +54,6 @@ public class Enums {
         // + 4 5
 
 
-
         Operations op = Operations.PLUS;
         op.apply(234,345);
 

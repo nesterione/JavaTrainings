@@ -5,7 +5,7 @@ import com.google.inject.Injector;
 
 public class Service {
 
-
+//
 //    public static void doSome() {
 //        ConnectionManager connectionManager = new ConnectionManager();
 //        UserDao userDao = new UserDao(connectionManager);
